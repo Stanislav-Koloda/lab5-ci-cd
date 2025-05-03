@@ -2,13 +2,13 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    # Запускається тільки якщо всі перевірки пройшли успішно
     needs: [build]
     if: success()
     steps:
@@ -32,4 +32,3 @@ jobs:
         with:
           folder: dist
           branch: gh-pages
-
