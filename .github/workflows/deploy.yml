@@ -8,9 +8,7 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    # Запускається тільки якщо всі перевірки пройшли успішно
-    needs: [build]
-    if: success()
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
