@@ -2,12 +2,15 @@ name: Deploy
 
 on:
   push:
-    branches: [gh-pages]
+    branches: [main]
 
 jobs:
-  build:
+  deploy:
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-
+    # Запускається тільки якщо всі перевірки пройшли успішно
+    needs: [build]
+    if: success()
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,7 +22,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build
